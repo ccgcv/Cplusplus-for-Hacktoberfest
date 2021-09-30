@@ -1,11 +1,4 @@
-//PRACTICAL EXAMINATION 2020-21 SEM 4 DSA
-/*PROBELM STATEMENT:
-Write a c++ program to implement Huffman coding text compression algorithm. Build the 
-huffman Tree using characters and their frequencies input from user. Encode a given string by 
-using codes generated from huffman tree and decode the bit sequence entered by the user
-*/
-//Submitted by Navneet Das 3231 SE COMP-A
-
+//Implementation of Huffman Coding, Das here :D
 #include <bits/stdc++.h>
 using namespace std;
 
