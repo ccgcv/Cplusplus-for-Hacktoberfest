@@ -1,0 +1,244 @@
+//Prefer Running the Code in Console/Command Prompt
+//This Program is to Generate Hamming Code for any Message to be sent by Receiver Or To check whether the Received Code is Correct or Not???
+
+#include<iostream>
+#include<string.h>
+#include<math.h>
+using namespace std;
+
+int givePos(int n,int a[])
+{
+	int sum = 0;
+	
+	for(int i=0;i<n;i++)
+	{
+		sum += a[i]*pow(2,i);
+	}
+	return sum;
+}
+
+int changeBit(int x)
+{
+	if(x == 0)
+	{
+		return 1;
+	}
+	return 0; 
+}
+
+int rBit(int n,int a[],int x)
+{
+	int i = x,count = x,sum = 0;
+	
+	while(i <= n)
+	{
+		while(count--)
+		{
+			if(i>n)
+			{
+				break;
+			}
+			sum += a[i-1];
+			i++;
+		}
+		count = x;
+		i += x;
+	}
+	
+	if(sum%2 == 0)
+	{
+		return 0;
+	}
+	return 1;
+}
+
+int main()
+{
+	int p,ch;
+	
+	while(1)
+	{
+		printf("Enter Choice:\n\n1.Sender\n2.Receiver\n3.Quit\n\nchoice: ");
+		scanf("%d",&ch);
+		
+		if(ch == 1)
+		{
+			char s[1000];
+			
+			printf("\nEnter 'Message' for which you want Hamming Code :");
+			scanf("%s",s);
+
+			int count=1,l = strlen(s);
+
+			while(1)
+			{
+				if(pow(2,count) >= l+count+1)
+				{
+					break;
+				}
+				count++;
+			}
+			
+			printf("\n-> Redundant bits required = %d\n\n",count);
+
+			int n = l + count,temp = l-1;
+
+			int a[n];
+
+			count = 0;
+	
+			for(int i=0;i<n;i++)
+			{
+				int t = pow(2,count) - 1;
+
+				if(i != t)
+				{
+					a[i] = (int)s[temp] - 48;
+					temp--;
+				}
+				else
+				{
+					a[i] = 0;
+					count++;
+				}
+			}
+
+			printf("-> Redundant bits are : (");
+
+			for(int i=0;i<count;i++)
+			{
+				temp = pow(2,i);
+				printf("r%d",temp);
+						
+				if(i != count-1)
+				{
+					printf(",");
+				}
+			}
+			
+			printf(") = (");
+
+			for(int i=0;i<count;i++)
+			{
+				temp = pow(2,i) - 1;
+				a[temp] = rBit(n,a,temp+1);
+				printf("%d",a[temp]);
+
+				if(i != count-1)
+				{
+					printf(",");
+				}
+			}
+			
+			printf(")\n\n");
+
+			printf("-> Your Generated Hamming Code is : ");
+
+			for(int i=n-1;i>=0;i--)
+			{
+				printf("%d",a[i]);
+			}
+			
+			printf("\n\n");
+
+			for(int i=0;i<172;i++)
+			{
+				printf("-");
+			}
+			printf("\n");
+		}
+		else if(ch == 2)
+		{
+			char s[1000];
+			
+			printf("\nEnter 'Hamming Code' You want to Check Error for: ");
+			scanf("%s",s);
+
+			int l = strlen(s),count = 1;
+
+			while(1)
+			{
+				if(pow(2,count) >= l+1)
+				{
+					break;
+				}
+				count++;
+			}
+			
+			int a[l],r[count];
+			
+			for(int i=0;i<l;i++)
+			{
+				a[i] = (char)s[l-i-1] - 48;
+			}
+			
+			int error = 0,temp;
+
+			printf("\n-> Redundant Bits are : (");
+
+			for(int i=0;i<count;i++)
+			{
+				temp = pow(2,i);
+				printf("r%d",temp);
+				
+				if(i != count-1)
+				{
+					printf(",");
+				}
+			}
+			
+			printf(") = (");
+			
+			for(int i=0;i<count;i++)
+			{
+				temp = pow(2,i) - 1;
+				
+				r[i] = rBit(l,a,temp+1);
+				printf("%d",r[i]);
+
+				if(i != count-1)
+				{
+					printf(",");
+				}
+				
+				if(r[i] == 1)
+				{
+					error = 1;
+				}
+			}
+			
+			printf(")\n\n");
+			
+			if(error == 1)
+			{
+				int bit = givePos(count,r);
+				printf("-> Your Message have error at %dth Position\n\n-> Corrected Message is : ",bit);
+				
+				for(int i=l-1;i>=0;i--)
+				{
+					if(i == bit-1)
+					{
+						a[i] = changeBit(a[i]);
+					}
+					printf("%d",a[i]);
+				}
+				printf("\n\n");
+			}
+			else
+			{
+				printf("-> No Error !!!\n\n");
+			}
+			
+			for(int i=0;i<172;i++)
+			{
+				printf("-");
+			}
+			
+			printf("\n");
+		}
+		else 
+		{
+			break;
+		}
+	}
+}
