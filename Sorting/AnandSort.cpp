@@ -16,16 +16,17 @@ int main(int argc, char* argv[])
     for(i=0;i<n;i++) {
         for(j=0;j<=100;j++) {
             if(B[i]==j) {
-                A[j]=B[i];
+                ++A[j];
                 break;
             }
         }
     }
     int dst = 0;
     for(i=0;i<100;i++) {
-        if(A[i]!=0) {      //It will print only that index element value which is not having 0 
-            B[dst] = A[i];
+        while ( A[i]!=0 ) {      //It will print only that index element value which is not having 0 
+            B[dst] = i;
             ++dst;
+            --A[i];
         }
     }
     displayResult(B);
