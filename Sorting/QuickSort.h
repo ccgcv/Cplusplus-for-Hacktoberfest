@@ -1,4 +1,10 @@
+#ifndef  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_QUICKSORT_H
+#define  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_QUICKSORT_H
+
 #include "util/inputoutput.h"
+
+namespace ccgcv::Hacktoberfest::Sort
+{
 
 // Function to partition the array passing array, starting element and last element as parameters
 int partition(int a[],int start,int end)
@@ -35,4 +41,7 @@ void QuickSort(int* a, int* aEnd)
 {
     QuickSort(a, 0, aEnd - a - 1);
 }
+}
+
+#endif
 

@@ -1,5 +1,11 @@
+#ifndef  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_SELECTIONSORT_H
+#define  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_SELECTIONSORT_H
+
 #include<iostream>
 #include "util/inputoutput.h"
+
+namespace ccgcv::Hacktoberfest::Sort
+{
 
 void SelectionSort(int* a, int* aEnd)
 {
@@ -15,4 +21,8 @@ void SelectionSort(int* a, int* aEnd)
         }
     }
 }
+
+}
+
+#endif
 

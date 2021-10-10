@@ -1,6 +1,12 @@
+#ifndef  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_MERGESORT_H
+#define  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_MERGESORT_H
+
 // C++ program for Merge Sort
 
 #include "util/inputoutput.h"
+
+namespace ccgcv::Hacktoberfest::Sort
+{
 
 // Merges two subarrays of array[].
 // First subarray is arr[begin..mid]
@@ -74,4 +80,8 @@ void MergeSort(int* begin, int* end)
 {
     MergeSort(begin, 0, end - begin - 1);
 }
+
+}
+
+#endif
 

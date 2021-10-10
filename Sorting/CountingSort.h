@@ -1,7 +1,13 @@
+#ifndef  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_COUNTINGSORT_H
+#define  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_COUNTINGSORT_H
+
 //counting sort in c++
 
 #include <vector>
 #include "util/inputoutput.h"
+
+namespace ccgcv::Hacktoberfest::Sort
+{
 
 void CountingSort(int* arr, int* arrEnd)
 {
@@ -27,4 +33,8 @@ void CountingSort(int* arr, int* arrEnd)
         }
     }
 }
+
+}
+
+#endif
 

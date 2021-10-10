@@ -1,5 +1,11 @@
+#ifndef  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_CYCLESORT_H
+#define  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_CYCLESORT_H
+
 #include <utility>
 #include "util/inputoutput.h"
+
+namespace ccgcv::Hacktoberfest::Sort
+{
 
 // Function sort the array using Cycle sort
 void CycleSort(int* arr, int* arrEnd)
@@ -63,4 +69,8 @@ void CycleSort(int* arr, int* arrEnd)
         }
     }
 }
+
+}
+
+#endif
 

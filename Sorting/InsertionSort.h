@@ -1,4 +1,10 @@
+#ifndef  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_INSERTIONSORT_H
+#define  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_INSERTIONSORT_H
+
 #include "util/inputoutput.h"
+
+namespace ccgcv::Hacktoberfest::Sort
+{
 
 void InsertionSort(int* a, int* aEnd)
 {
@@ -14,4 +20,8 @@ void InsertionSort(int* a, int* aEnd)
         a[j+1] = e;
     }
 }
+
+}
+
+#endif
 
