@@ -31,6 +31,10 @@ void QuickSort(int a[], int start, int end)
         QuickSort(a,p+1,end); // Sort all elements after pivot to end
     }
 }
+void QuickSort(int* a, int* aEnd)
+{
+    QuickSort(a, 0, aEnd - a - 1);
+}
 
 int main(int argc, char* argv[])
 {
@@ -38,7 +42,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> a = getSortInput(argc, argv);
-    QuickSort(&a[0], 0, a.size()-1);
+    QuickSort(&a[0], &a[a.size()]);
     displayResult(a);
 
     return 0;

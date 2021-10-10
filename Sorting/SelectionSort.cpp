@@ -1,8 +1,9 @@
 #include<iostream>
 #include "util/inputoutput.h"
 
-void SelectionSort(int a[], int size)
+void SelectionSort(int* a, int* aEnd)
 {
+    int size = aEnd - a;
     int temp;
     for(int i=0; i<size; i++) {
         for(int j=i+1; j<size; j++) {
@@ -22,6 +23,6 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-    SelectionSort(&arr[0], arr.size());
+    SelectionSort(&arr[0], &arr[arr.size()]);
     displayResult(arr);
 }

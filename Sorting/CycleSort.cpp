@@ -2,8 +2,9 @@
 #include "util/inputoutput.h"
 
 // Function sort the array using Cycle sort
-void CycleSort(int arr[], int n)
+void CycleSort(int* arr, int* arrEnd)
 {
+    int n = arrEnd - arr;
     // count number of memory writes
     int writes = 0;
 
@@ -69,7 +70,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-    CycleSort(&arr[0], arr.size());
+    CycleSort(&arr[0], &arr[arr.size()]);
     displayResult(arr);
 
     return 0;
