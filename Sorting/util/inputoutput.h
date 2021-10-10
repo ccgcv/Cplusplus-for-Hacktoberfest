@@ -7,6 +7,7 @@ namespace ccgcv::Hacktoberfest::Sort::Util
 {
 
 std::vector<int> getSortInput(int argc, char* argv[]);
+void displayResult(std::vector<int> const& sortedData);
 
 }
 

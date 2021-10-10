@@ -1,12 +1,13 @@
 /* This Sorting Algorith is based on array index matching, if element matches with the index number then that element is assigned at that place or index of array */
 /* if we will assign each element at unique index and then print array in increasing order, ofcorse element will be printed in ascending order*/
 
-#include <iostream>
 #include "util/inputoutput.h"
 
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
+
     std::vector<int> B = getSortInput(argc, argv);
     int n = B.size();
 
@@ -20,11 +21,13 @@ int main(int argc, char* argv[])
             }
         }
     }
+    int dst = 0;
     for(i=0;i<100;i++) {
         if(A[i]!=0) {      //It will print only that index element value which is not having 0 
-            std::cout << A[i] << " ";
+            B[dst] = A[i];
+            ++dst;
         }
     }
-    std::cout << "\n";
+    displayResult(B);
     return 0;
 }

@@ -26,3 +26,11 @@ std::vector<int> ccgcv::Hacktoberfest::Sort::Util::getSortInput(int argc, char* 
     return data;
 }
 
+void ccgcv::Hacktoberfest::Sort::Util::displayResult(std::vector<int> const& sortedData)
+{
+    for(int i: sortedData) {
+        std::cout << i << " ";
+    }
+    std::cout << "\n";
+}
+

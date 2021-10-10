@@ -1,6 +1,5 @@
 // C++ program for Merge Sort
 
-#include <iostream>
 #include "util/inputoutput.h"
 
 // Merges two subarrays of array[].
@@ -71,29 +70,17 @@ void mergeSort(int array[], int const begin, int const end)
     merge(array, begin, mid, end);
 }
 
-// UTILITY FUNCTIONS
-// Function to print an array
-void printArray(int A[], int size)
-{
-    for (auto i = 0; i < size; i++) {
-        std::cout << A[i] << " ";
-    }
-    std::cout << "\n";
-}
-
 // Driver code
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
+
     std::vector<int> arr = getSortInput(argc, argv);
     int arr_size = arr.size();
 
-    std::cout << "Given array is \n";
-    printArray(&arr[0], arr_size);
-
     mergeSort(&arr[0], 0, arr_size - 1);
+    displayResult(arr);
 
-    std::cout << "\nSorted array is \n";
-    printArray(&arr[0], arr_size);
     return 0;
 }

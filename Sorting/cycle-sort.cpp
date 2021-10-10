@@ -1,4 +1,3 @@
-#include <iostream>
 #include <utility>
 #include "util/inputoutput.h"
 
@@ -64,28 +63,16 @@ void cycleSort(int arr[], int n)
     }
 }
 
-// UTILITY FUNCTIONS
-// Function to print an array
-void printArray(int A[], int size)
-{
-    for (auto i = 0; i < size; i++) {
-        std::cout << A[i] << " ";
-    }
-    std::cout << "\n";
-}
-
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
+
     std::vector<int> arr = getSortInput(argc, argv);
     int n = arr.size();
 
-    printArray(&arr[0], n);
     cycleSort(&arr[0], n);
-
-    std::cout << "\n"
-              << "After sort : " << "\n";
-    printArray(&arr[0], n);
+    displayResult(arr);
 
     return 0;
 }

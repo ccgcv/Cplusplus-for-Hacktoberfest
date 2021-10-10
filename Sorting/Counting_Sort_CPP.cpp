@@ -1,6 +1,5 @@
 //counting sort in c++
 
-#include <iostream>
 #include <vector>
 #include "util/inputoutput.h"
 
@@ -26,23 +25,17 @@ void countingSort(int arr[], int n)
             j++;
         }
     }
-
-    //printing the array
-    for (int i=0;i<n;i++) {
-        std::cout << arr[i] << ",";
-    }
-    std::cout << "\n";
 }
 
 int main(int argc, char* argv[])
 {
-std::cout << "1\n";
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
+
     std::vector<int> arr = getSortInput(argc, argv);
     int size = arr.size();
-std::cout << "2\n";
 
     countingSort(&arr[0], size);
-std::cout << "3\n";
+    displayResult(arr);
     return 0;;
 }

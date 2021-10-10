@@ -13,19 +13,16 @@ void sort(int a[], int size)
             }
         }
     }
-
-    for(int i=0; i<size; i++) {
-       std::cout << a[i] << ",";
-    }
-    std::cout << "\n";
 }
 
 
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
+
     std::vector<int> arr = getSortInput(argc, argv);
 
-   sort(&arr[0], arr.size());
-
+    sort(&arr[0], arr.size());
+    displayResult(arr);
 }
