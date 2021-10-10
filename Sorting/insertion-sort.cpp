@@ -1,6 +1,6 @@
 #include "util/inputoutput.h"
 
-void sort(int a[], int size)
+void insertionSort(int a[], int size)
 {
     int e;
     for(int i=0; i<size; i++) {
@@ -20,8 +20,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-
-    sort(&arr[0], arr.size());
+    insertionSort(&arr[0], arr.size());
     displayResult(arr);
 
     return 0;

@@ -38,9 +38,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> a = getSortInput(argc, argv);
-    int n = a.size();
-
-    quicksort(&a[0], 0, n-1);
+    quicksort(&a[0], 0, a.size()-1);
     displayResult(a);
 
     return 0;

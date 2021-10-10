@@ -33,9 +33,8 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-    int size = arr.size();
-
-    countingSort(&arr[0], size);
+    countingSort(&arr[0], arr.size());
     displayResult(arr);
+
     return 0;;
 }
