@@ -12,8 +12,8 @@ template<typename I>
 void CycleSort(I begin, I end)
 {
     using ValueType = typename std::iterator_traits<I>::value_type;
+    using std::swap;
 
-    int n = end - begin;
     I last = end - 1;
     // count number of memory writes
     int writes = 0;
@@ -23,14 +23,14 @@ void CycleSort(I begin, I end)
     //for (int cycleStart = 0; cycleStart <= n - 2; cycleStart++) {
 
         // initialize item as starting point
-        ValueType item = *cycleStart;
+        ValueType item = std::move(*cycleStart);
 
         // Find position where we put the item. We basically
         // Count all smaller elements on right side of item.
         I pos = cycleStart;
         for (I i = cycleStart + 1; i != end; ++i) {
             if (*i < item) {
-                pos++;
+                ++pos;
             }
         }
 
@@ -41,13 +41,13 @@ void CycleSort(I begin, I end)
 
         // ignore all duplicate  elements since we they are "sorted"
         while (item == *pos) {
-            pos += 1;
+            ++pos;
         }
 
         // move the item to it's right position
         if (pos != cycleStart) {
-            std::swap(item, *pos);
-            writes++;
+            swap(item, *pos);
+            ++writes;
         }
 
         // Rotate rest of the cycle
@@ -57,19 +57,19 @@ void CycleSort(I begin, I end)
             // Find position where we put the element
             for (I i = cycleStart + 1; i != end; ++i) {
                 if (*i < item) {
-                    pos += 1;
+                    ++pos;
                 }
             }
 
             // Ignore all duplicate  elements
             while (item == *pos) {
-                pos += 1;
+                ++pos;
             }
 
             // Put the item to it's right position
             if (item != *pos) {
-                std::swap(item, *pos);
-                writes++;
+                swap(item, *pos);
+                ++writes;
             }
         }
     }

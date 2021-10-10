@@ -19,16 +19,9 @@ void merge(I left, I mid, I right)
 {
     using ValueType = typename std::iterator_traits<I>::value_type;
 
-    auto const subArrayOne = std::distance(left, mid);
-    auto const subArrayTwo = std::distance(mid, right);
-
     // Create temp arrays
-    std::vector<ValueType>    leftArray(subArrayOne);
-    std::vector<ValueType>    rightArray(subArrayTwo);
-
-    // Copy data to temp arrays leftArray[] and rightArray[]
-    std::move(left, mid, std::begin(leftArray));
-    std::move(mid, right, std::begin(rightArray));
+    std::vector<ValueType>    leftArray(std::make_move_iterator(left), std::make_move_iterator(mid));
+    std::vector<ValueType>    rightArray(std::make_move_iterator(mid), std::make_move_iterator(right));
 
     auto indexOfSubArrayOne = std::begin(leftArray); // Initial index of first sub-array
     auto indexOfSubArrayTwo = std::begin(rightArray); // Initial index of second sub-array
@@ -37,14 +30,14 @@ void merge(I left, I mid, I right)
     // Merge the temp arrays back into array[left..right]
     while (indexOfSubArrayOne != std::end(leftArray) && indexOfSubArrayTwo != std::end(rightArray)) {
         if (*indexOfSubArrayOne <= *indexOfSubArrayTwo) {
-            *indexOfMergedArray = *indexOfSubArrayOne;
-            indexOfSubArrayOne++;
+            std::iter_swap(indexOfMergedArray, indexOfSubArrayOne);
+            ++indexOfSubArrayOne;
         }
         else {
-            *indexOfMergedArray = *indexOfSubArrayTwo;
-            indexOfSubArrayTwo++;
+            std::iter_swap(indexOfMergedArray, indexOfSubArrayTwo);
+            ++indexOfSubArrayTwo;
         }
-        indexOfMergedArray++;
+        ++indexOfMergedArray;
     }
 
     // Copy the remaining elements of

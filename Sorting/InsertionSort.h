@@ -13,13 +13,13 @@ void InsertionSort(I begin, I end)
 
     ValueType e;
     for (I loop = begin + 1; loop != end; ++loop) {
-        e = *loop;
+        e = std::move(*loop);
         I j= loop-1;
         while(j != begin && *j > e) {
-            *(j+1) = *j;
-            j--;
+            *(j+1) = std::move(*j);
+            --j;
         }
-        *(j+1) = e;
+        *(j+1) = std::move(e);
     }
 }
 

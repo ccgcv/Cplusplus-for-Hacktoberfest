@@ -12,13 +12,10 @@ void SelectionSort(I begin, I end)
 {
     using ValueType = typename std::iterator_traits<I>::value_type;
 
-    ValueType temp;
     for(I loop = begin; loop != end; ++loop) {
         for(I j= loop + 1; j != end; ++j) {
             if(*loop > *j) {
-                temp = *loop;
-                *loop = *j;
-                *j = temp;
+                std::iter_swap(loop, j);
             }
         }
     }
