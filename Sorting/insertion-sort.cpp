@@ -1,20 +1,18 @@
-#include<iostream>
 #include "util/inputoutput.h"
 
 void sort(int a[], int size)
 {
-    int temp;
+    int e;
     for(int i=0; i<size; i++) {
-        for(int j=i+1; j<size; j++) {
-            if(a[i] > a[j]) {
-                temp = a[i];
-                a[i] = a[j];
-                a[j] = temp;
-            }
+        e = a[i];
+        int j= i-1;
+        while(j>=0 && a[j]>e) {
+            a[j+1] = a[j];
+            j--;
         }
+        a[j+1] = e;
     }
 }
-
 
 int main(int argc, char* argv[])
 {
@@ -25,4 +23,6 @@ int main(int argc, char* argv[])
 
     sort(&arr[0], arr.size());
     displayResult(arr);
+
+    return 0;
 }
