@@ -1,5 +1,6 @@
 #include <iostream>
 #include <utility>
+#include "util/inputoutput.h"
 
 // Function sort the array using Cycle sort
 void cycleSort(int arr[], int n)
@@ -73,8 +74,11 @@ void printArray(int A[], int size)
     std::cout << "\n";
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    std::vector<int> data = getSortInput(argc, argv);
+
     int arr[] = {1, 8, 3, 9, 10, 10, 2, 4};
     int n = sizeof(arr) / sizeof(arr[0]);
     printArray(arr, n);

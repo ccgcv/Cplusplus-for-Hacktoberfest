@@ -1,4 +1,5 @@
 #include<iostream>
+#include "util/inputoutput.h"
 
 void sort(int a[])
 {
@@ -20,8 +21,11 @@ void sort(int a[])
 }
 
 
-int main()
+int main(int argc, char* argv[])
 {
+    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    std::vector<int> data = getSortInput(argc, argv);
+
     int arr[5];
     std::cout << "Enter elements in the array:\n";
     for(int i=0; i<5; i++) {

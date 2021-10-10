@@ -8,3 +8,6 @@ all: $(TARGET)
 
 %.app:	%.cpp util/inputoutput.cpp
 	$(CXX) -o $@ -std=c++17 $?
+
+clean:
+	$(RM) -rf $(APP)

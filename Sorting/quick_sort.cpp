@@ -1,4 +1,5 @@
 #include<iostream>
+#include "util/inputoutput.h"
 
 // Function to partition the array passing array, starting element and last element as parameters
 int partition(int a[],int start,int end)
@@ -32,8 +33,11 @@ void quicksort(int a[], int start, int end)
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    std::vector<int> data = getSortInput(argc, argv);
+
     int n;
     std::cout << "Array size:\n";
     std::cin >> n;

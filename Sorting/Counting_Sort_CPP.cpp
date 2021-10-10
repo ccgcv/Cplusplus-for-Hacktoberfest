@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include "util/inputoutput.h"
 
 void countingSort(int arr[], int n)
 {
@@ -33,8 +34,11 @@ void countingSort(int arr[], int n)
     std::cout << "\n";
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    std::vector<int> data = getSortInput(argc, argv);
+
     int size;
     std::cout << "Enter size of array:\n";
     std::cin >> size;
