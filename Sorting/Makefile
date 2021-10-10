@@ -3,6 +3,8 @@ SRC		= $(wildcard *.cpp)
 REG		= $(patsubst %.cpp, %.reg, $(SRC))
 RST		= $(patsubst %.cpp, %.rst, $(SRC))
 
+.INTERMEDIATE:		register
+
 
 all:	app
 
@@ -14,18 +16,14 @@ clean:
 
 test: app $(RST)
 
-.PHONY:		register register.rm register.add
+register:	util/sortfunctions.register
 
-register:	register.rm register.add
-
-register.rm:
+util/sortfunctions.register:	$(SRC)
 	rm -f util/sortfunctions.register
-
-register.add: $(REG)
+	make $(REG)
 
 %.reg:
 	echo "REGISTER_SORT_FUNCTION($*)" >> util/sortfunctions.register
-	
 
 %.rst:	%.tst
 	@diffCount=`diff $< util/expected | wc -l`;		\
@@ -35,7 +33,7 @@ register.add: $(REG)
 		printf "Actual:   "; cat $<;				\
 	fi
 
-%.tst:	%.app
+%.tst:	app
 	./app --default --sort=$* > $@
 
 	
