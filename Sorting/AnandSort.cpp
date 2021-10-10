@@ -3,9 +3,10 @@
 
 #include "util/inputoutput.h"
 
-void AnandSort(int* B, int n)
+void AnandSort(int* B, int* Bend)
 {
     int i,j,A[100]={0};   // Initally each index is assigned with 0
+    int n = Bend - B;
 
     for(i=0;i<n;i++) {
         for(j=0;j<=100;j++) {
@@ -31,9 +32,8 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> B = getSortInput(argc, argv);
-    int n = B.size();
-
-    AnandSort(&B[0], B.size());
+    AnandSort(&B[0], &B[B.size()]);
     displayResult(B);
+
     return 0;
 }
