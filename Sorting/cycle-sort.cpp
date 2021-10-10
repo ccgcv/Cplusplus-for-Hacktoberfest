@@ -69,9 +69,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-    int n = arr.size();
-
-    cycleSort(&arr[0], n);
+    cycleSort(&arr[0], arr.size());
     displayResult(arr);
 
     return 0;

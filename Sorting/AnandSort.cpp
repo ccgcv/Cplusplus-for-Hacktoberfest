@@ -3,14 +3,8 @@
 
 #include "util/inputoutput.h"
 
-int main(int argc, char* argv[])
+void AnandSort(int* B, int n)
 {
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> B = getSortInput(argc, argv);
-    int n = B.size();
-
     int i,j,A[100]={0};   // Initally each index is assigned with 0
 
     for(i=0;i<n;i++) {
@@ -29,6 +23,17 @@ int main(int argc, char* argv[])
             --A[i];
         }
     }
+}
+
+int main(int argc, char* argv[])
+{
+    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
+    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
+
+    std::vector<int> B = getSortInput(argc, argv);
+    int n = B.size();
+
+    AnandSort(&B[0], B.size());
     displayResult(B);
     return 0;
 }

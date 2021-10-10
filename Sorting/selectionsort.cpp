@@ -1,7 +1,7 @@
 #include<iostream>
 #include "util/inputoutput.h"
 
-void sort(int a[], int size)
+void selectionSort(int a[], int size)
 {
     int temp;
     for(int i=0; i<size; i++) {
@@ -22,7 +22,6 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-
-    sort(&arr[0], arr.size());
+    selectionSort(&arr[0], arr.size());
     displayResult(arr);
 }

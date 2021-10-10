@@ -77,9 +77,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-    int arr_size = arr.size();
-
-    mergeSort(&arr[0], 0, arr_size - 1);
+    mergeSort(&arr[0], 0, arr.size() - 1);
     displayResult(arr);
 
     return 0;
