@@ -3,8 +3,6 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 void countingSort(int arr[], int n)
 {
     int largest = arr[0];
@@ -30,20 +28,21 @@ void countingSort(int arr[], int n)
 
     //printing the array
     for (int i=0;i<n;i++) {
-        cout<<arr[i]<<",";
+        std::cout << arr[i] << ",";
     }
+    std::cout << "\n";
 }
 
 int main()
 {
     int size;
-    cout<<"Enter size of array: ";
-    cin>>size;
+    std::cout << "Enter size of array:\n";
+    std::cin >> size;
     int arr[size];
 
     for (int i = 0;i<size;i++) {
-        cout<<"Enter "<<i+1<<" element of array: "; 
-        cin>>arr[i];
+        std::cout << "Enter " << i+1 << " element of array:\n";
+        std::cin >> arr[i];
     }
 
     int n = sizeof(arr) / sizeof(int);

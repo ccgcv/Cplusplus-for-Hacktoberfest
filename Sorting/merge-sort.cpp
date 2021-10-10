@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 // Merges two subarrays of array[].
 // First subarray is arr[begin..mid]
 // Second subarray is arr[mid+1..end]
@@ -77,8 +75,9 @@ void mergeSort(int array[], int const begin, int const end)
 void printArray(int A[], int size)
 {
     for (auto i = 0; i < size; i++) {
-        cout << A[i] << " ";
+        std::cout << A[i] << " ";
     }
+    std::cout << "\n";
 }
 
 // Driver code
@@ -87,12 +86,12 @@ int main()
     int arr[] = { 12, 11, 13, 5, 6, 7 };
     auto arr_size = sizeof(arr) / sizeof(arr[0]);
 
-    cout << "Given array is \n";
+    std::cout << "Given array is \n";
     printArray(arr, arr_size);
 
     mergeSort(arr, 0, arr_size - 1);
 
-    cout << "\nSorted array is \n";
+    std::cout << "\nSorted array is \n";
     printArray(arr, arr_size);
     return 0;
 }

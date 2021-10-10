@@ -1,6 +1,5 @@
 #include <iostream>
-
-using namespace std;
+#include <utility>
 
 // Function sort the array using Cycle sort
 void cycleSort(int arr[], int n)
@@ -35,7 +34,7 @@ void cycleSort(int arr[], int n)
 
         // move the item to it's right position
         if (pos != cycleStart) {
-            swap(item, arr[pos]);
+            std::swap(item, arr[pos]);
             writes++;
         }
 
@@ -57,7 +56,7 @@ void cycleSort(int arr[], int n)
 
             // Put the item to it's right position
             if (item != arr[pos]) {
-                swap(item, arr[pos]);
+                std::swap(item, arr[pos]);
                 writes++;
             }
         }
@@ -69,8 +68,9 @@ void cycleSort(int arr[], int n)
 void printArray(int A[], int size)
 {
     for (auto i = 0; i < size; i++) {
-        cout << A[i] << " ";
+        std::cout << A[i] << " ";
     }
+    std::cout << "\n";
 }
 
 int main()
@@ -80,10 +80,9 @@ int main()
     printArray(arr, n);
     cycleSort(arr, n);
 
-    cout << endl
-        << "After sort : " << endl;
+    std::cout << "\n"
+              << "After sort : " << "\n";
     printArray(arr, n);
-    cout << endl;
 
     return 0;
 }

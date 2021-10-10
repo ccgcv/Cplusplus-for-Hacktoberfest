@@ -1,7 +1,5 @@
 #include<iostream>
 
-using namespace std;
-
 // Function to partition the array passing array, starting element and last element as parameters
 int partition(int a[],int start,int end)
 {
@@ -37,19 +35,20 @@ void quicksort(int a[], int start, int end)
 int main()
 {
     int n;
-    cout<<"Array size: ";
-    cin>>n;
+    std::cout << "Array size:\n";
+    std::cin >> n;
     int a[n];
-    cout<<"Array: ";
+    std::cout << "Array:\n";
     for(int i = 0; i<n; i++) {
-        cin>>a[i];
+        std::cin >> a[i];
     }
 
     quicksort(a,0,n-1);
-    cout<<"After sorting: ";
+    std::cout << "After sorting:\n";
     for(int i=0;i<n;i++)
     {
-        cout<<a[i]<<" ";
+        std::cout << a[i] << " ";
     }
+    std::cout << "\n";
     return 0;
 }

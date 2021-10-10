@@ -1,7 +1,5 @@
 #include<iostream>
 
-using namespace std;
-
 void sort(int a[])
 {
     int e;
@@ -16,16 +14,17 @@ void sort(int a[])
     }
 
     for(int i=0 ;i<5; i++) {
-        cout<<a[i]<<",";
+        std::cout << a[i] << ",";
     }
+    std::cout << "\n";
 }
 
 int main()
 {
     int arr[5];
-    cout<<"Enter elements in the array:";
+    std::cout << "Enter elements in the array:\n";
     for(int i=0; i<5; i++) {
-        cin>>arr[i];
+        std::cin >> arr[i];
     }
 
     sort(arr);
