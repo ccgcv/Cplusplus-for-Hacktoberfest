@@ -3,7 +3,7 @@
 #include <vector>
 #include "util/inputoutput.h"
 
-void countingSort(int arr[], int n)
+void CountingSort(int arr[], int n)
 {
     int largest = arr[0];
     for (int i = 0;i<n;i++) {
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> arr = getSortInput(argc, argv);
-    countingSort(&arr[0], arr.size());
+    CountingSort(&arr[0], arr.size());
     displayResult(arr);
 
     return 0;;

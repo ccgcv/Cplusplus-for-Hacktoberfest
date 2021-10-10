@@ -22,13 +22,13 @@ int partition(int a[],int start,int end)
 }
 
 // Function to sort the array after partitioning using recursion
-void quicksort(int a[], int start, int end)
+void QuickSort(int a[], int start, int end)
 {
     if(start<end) {
         int p;
         p = partition(a,start, end);
-        quicksort(a,start,p-1); // Sort all elements from start to pivot(excluding)
-        quicksort(a,p+1,end); // Sort all elements after pivot to end
+        QuickSort(a,start,p-1); // Sort all elements from start to pivot(excluding)
+        QuickSort(a,p+1,end); // Sort all elements after pivot to end
     }
 }
 
@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     using ccgcv::Hacktoberfest::Sort::Util::displayResult;
 
     std::vector<int> a = getSortInput(argc, argv);
-    quicksort(&a[0], 0, a.size()-1);
+    QuickSort(&a[0], 0, a.size()-1);
     displayResult(a);
 
     return 0;
