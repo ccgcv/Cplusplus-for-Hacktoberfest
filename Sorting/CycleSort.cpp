@@ -64,14 +64,3 @@ void CycleSort(int* arr, int* arrEnd)
     }
 }
 
-int main(int argc, char* argv[])
-{
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> arr = getSortInput(argc, argv);
-    CycleSort(&arr[0], &arr[arr.size()]);
-    displayResult(arr);
-
-    return 0;
-}

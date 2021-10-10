@@ -36,14 +36,3 @@ void QuickSort(int* a, int* aEnd)
     QuickSort(a, 0, aEnd - a - 1);
 }
 
-int main(int argc, char* argv[])
-{
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> a = getSortInput(argc, argv);
-    QuickSort(&a[0], &a[a.size()]);
-    displayResult(a);
-
-    return 0;
-}
