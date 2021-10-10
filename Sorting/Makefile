@@ -1,19 +1,31 @@
 
 SRC		= $(wildcard *.cpp)
-APP		= $(patsubst %.cpp, %.app, $(SRC))
+REG		= $(patsubst %.cpp, %.reg, $(SRC))
 RST		= $(patsubst %.cpp, %.rst, $(SRC))
 
-TARGET	= $(APP)
 
-all: $(TARGET)
+all:	app
 
-%.app:	%.cpp util/inputoutput.cpp
-	$(CXX) -o $@ -std=c++17 $^
+app:	register $(SRC) util/inputoutput.cpp util/main.cpp
+	$(CXX) -o $@ -std=c++17 $(SRC) util/inputoutput.cpp util/main.cpp
 
 clean:
 	$(RM) -rf $(APP) $(TST)
 
-test: $(APP) $(RST)
+test: app $(RST)
+
+.PHONY:		register register.rm register.add
+
+register:	register.rm register.add
+
+register.rm:
+	rm -f util/sortfunctions.register
+
+register.add: $(REG)
+
+%.reg:
+	echo "REGISTER_SORT_FUNCTION($*)" >> util/sortfunctions.register
+	
 
 %.rst:	%.tst
 	@diffCount=`diff $< util/expected | wc -l`;		\
@@ -24,6 +36,6 @@ test: $(APP) $(RST)
 	fi
 
 %.tst:	%.app
-	./$< --default > $@
+	./app --default --sort=$* > $@
 
 	

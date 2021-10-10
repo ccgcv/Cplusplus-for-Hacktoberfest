@@ -75,16 +75,3 @@ void MergeSort(int* begin, int* end)
     MergeSort(begin, 0, end - begin - 1);
 }
 
-
-// Driver code
-int main(int argc, char* argv[])
-{
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> arr = getSortInput(argc, argv);
-    MergeSort(&arr[0], &arr[arr.size()]);
-    displayResult(arr);
-
-    return 0;
-}

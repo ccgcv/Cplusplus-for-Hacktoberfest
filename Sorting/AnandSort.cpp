@@ -26,14 +26,3 @@ void AnandSort(int* B, int* Bend)
     }
 }
 
-int main(int argc, char* argv[])
-{
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> B = getSortInput(argc, argv);
-    AnandSort(&B[0], &B[B.size()]);
-    displayResult(B);
-
-    return 0;
-}
