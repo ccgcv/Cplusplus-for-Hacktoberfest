@@ -1,7 +1,7 @@
 
 SRC		= $(wildcard *.cpp)
 APP		= $(patsubst %.cpp, %.app, $(SRC))
-TST		= $(patsubst %.cpp, %.tst, $(SRC))
+RST		= $(patsubst %.cpp, %.rst, $(SRC))
 
 TARGET	= $(APP)
 
@@ -13,7 +13,15 @@ all: $(TARGET)
 clean:
 	$(RM) -rf $(APP) $(TST)
 
-test: $(TST)
+test: $(APP) $(RST)
+
+%.rst:	%.tst
+	@diffCount=`diff $< util/expected | wc -l`;		\
+	if [[ $${diffCount} != 0 ]]; then				\
+		echo "ERROR: $*";							\
+		printf "Expected: "; cat util/expected;	\
+		printf "Actual:   "; cat $<;				\
+	fi
 
 %.tst:	%.app
 	./$< --default > $@
