@@ -77,16 +77,15 @@ void printArray(int A[], int size)
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    std::vector<int> data = getSortInput(argc, argv);
+    std::vector<int> arr = getSortInput(argc, argv);
+    int n = arr.size();
 
-    int arr[] = {1, 8, 3, 9, 10, 10, 2, 4};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    printArray(arr, n);
-    cycleSort(arr, n);
+    printArray(&arr[0], n);
+    cycleSort(&arr[0], n);
 
     std::cout << "\n"
               << "After sort : " << "\n";
-    printArray(arr, n);
+    printArray(&arr[0], n);
 
     return 0;
 }

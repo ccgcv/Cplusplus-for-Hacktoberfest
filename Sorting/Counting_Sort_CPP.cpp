@@ -37,19 +37,9 @@ void countingSort(int arr[], int n)
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    std::vector<int> data = getSortInput(argc, argv);
+    std::vector<int> arr = getSortInput(argc, argv);
+    int size = arr.size();
 
-    int size;
-    std::cout << "Enter size of array:\n";
-    std::cin >> size;
-    int arr[size];
-
-    for (int i = 0;i<size;i++) {
-        std::cout << "Enter " << i+1 << " element of array:\n";
-        std::cin >> arr[i];
-    }
-
-    int n = sizeof(arr) / sizeof(int);
-    countingSort(arr, n);
+    countingSort(&arr[0], size);
     return 0;;
 }

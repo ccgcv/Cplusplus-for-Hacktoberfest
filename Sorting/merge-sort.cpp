@@ -85,17 +85,15 @@ void printArray(int A[], int size)
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    std::vector<int> data = getSortInput(argc, argv);
-
-    int arr[] = { 12, 11, 13, 5, 6, 7 };
-    auto arr_size = sizeof(arr) / sizeof(arr[0]);
+    std::vector<int> arr = getSortInput(argc, argv);
+    int arr_size = arr.size();
 
     std::cout << "Given array is \n";
-    printArray(arr, arr_size);
+    printArray(&arr[0], arr_size);
 
-    mergeSort(arr, 0, arr_size - 1);
+    mergeSort(&arr[0], 0, arr_size - 1);
 
     std::cout << "\nSorted array is \n";
-    printArray(arr, arr_size);
+    printArray(&arr[0], arr_size);
     return 0;
 }

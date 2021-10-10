@@ -1,11 +1,11 @@
 #include<iostream>
 #include "util/inputoutput.h"
 
-void sort(int a[])
+void sort(int a[], int size)
 {
     int temp;
-    for(int i=0; i<5; i++) {
-        for(int j=i+1; j<5; j++) {
+    for(int i=0; i<size; i++) {
+        for(int j=i+1; j<size; j++) {
             if(a[i] > a[j]) {
                 temp = a[i];
                 a[i] = a[j];
@@ -14,7 +14,7 @@ void sort(int a[])
         }
     }
 
-    for(int i=0; i<5; i++) {
+    for(int i=0; i<size; i++) {
        std::cout << a[i] << ",";
     }
     std::cout << "\n";
@@ -24,14 +24,8 @@ void sort(int a[])
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    std::vector<int> data = getSortInput(argc, argv);
+    std::vector<int> arr = getSortInput(argc, argv);
 
-    int arr[5];
-    std::cout << "Enter elements in the array:\n";
-    for(int i=0; i<5; i++) {
-        std::cin >> arr[i];
-    }
-
-   sort(arr);
+   sort(&arr[0], arr.size());
 
 }

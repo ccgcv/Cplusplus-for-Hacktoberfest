@@ -7,16 +7,11 @@
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    std::vector<int> data = getSortInput(argc, argv);
+    std::vector<int> B = getSortInput(argc, argv);
+    int n = B.size();
 
-    int i,j,n,A[100]={0};   // Initally each index is assigned with 0
-    std::cout << "Enter Size Of the Array:\n";
-    std::cin >> n;
-    int B[n];
-    std::cout << "Enter elements:\n";
-    for(i=0;i<n;i++) {
-        std::cin >> B[i];
-    }
+    int i,j,A[100]={0};   // Initally each index is assigned with 0
+
     for(i=0;i<n;i++) {
         for(j=0;j<=100;j++) {
             if(B[i]==j) {

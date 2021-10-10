@@ -36,18 +36,10 @@ void quicksort(int a[], int start, int end)
 int main(int argc, char* argv[])
 {
     using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    std::vector<int> data = getSortInput(argc, argv);
+    std::vector<int> a = getSortInput(argc, argv);
+    int n = a.size();
 
-    int n;
-    std::cout << "Array size:\n";
-    std::cin >> n;
-    int a[n];
-    std::cout << "Array:\n";
-    for(int i = 0; i<n; i++) {
-        std::cin >> a[i];
-    }
-
-    quicksort(a,0,n-1);
+    quicksort(&a[0], 0, n-1);
     std::cout << "After sorting:\n";
     for(int i=0;i<n;i++)
     {
