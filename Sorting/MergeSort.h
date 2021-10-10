@@ -4,42 +4,44 @@
 // C++ program for Merge Sort
 
 #include "util/inputoutput.h"
+#include <algorithm>
+#include <iostream>
 
 namespace ccgcv::Hacktoberfest::Sort
 {
 
 // Merges two subarrays of array[].
-// First subarray is arr[begin..mid]
-// Second subarray is arr[mid+1..end]
-void merge(int array[], int const left, int const mid, int const right)
+// First subarray is arr[begin..mid)
+// Second subarray is arr[mid..end)
+
+template<typename I>
+void merge(I left, I mid, I right)
 {
-    auto const subArrayOne = mid - left + 1;
-    auto const subArrayTwo = right - mid;
+    using ValueType = typename std::iterator_traits<I>::value_type;
+
+    auto const subArrayOne = std::distance(left, mid);
+    auto const subArrayTwo = std::distance(mid, right);
 
     // Create temp arrays
-    auto *leftArray = new int[subArrayOne],
-    *rightArray = new int[subArrayTwo];
+    std::vector<ValueType>    leftArray(subArrayOne);
+    std::vector<ValueType>    rightArray(subArrayTwo);
 
     // Copy data to temp arrays leftArray[] and rightArray[]
-    for (auto i = 0; i < subArrayOne; i++) {
-        leftArray[i] = array[left + i];
-    }
-    for (auto j = 0; j < subArrayTwo; j++) {
-        rightArray[j] = array[mid + 1 + j];
-    }
+    std::move(left, mid, std::begin(leftArray));
+    std::move(mid, right, std::begin(rightArray));
 
-    int indexOfSubArrayOne = 0; // Initial index of first sub-array
-    int indexOfSubArrayTwo = 0; // Initial index of second sub-array
-    int indexOfMergedArray = left; // Initial index of merged array
+    auto indexOfSubArrayOne = std::begin(leftArray); // Initial index of first sub-array
+    auto indexOfSubArrayTwo = std::begin(rightArray); // Initial index of second sub-array
+    I indexOfMergedArray = left; // Initial index of merged array
 
     // Merge the temp arrays back into array[left..right]
-    while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
-        if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
-            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+    while (indexOfSubArrayOne != std::end(leftArray) && indexOfSubArrayTwo != std::end(rightArray)) {
+        if (*indexOfSubArrayOne <= *indexOfSubArrayTwo) {
+            *indexOfMergedArray = *indexOfSubArrayOne;
             indexOfSubArrayOne++;
         }
         else {
-            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+            *indexOfMergedArray = *indexOfSubArrayTwo;
             indexOfSubArrayTwo++;
         }
         indexOfMergedArray++;
@@ -47,39 +49,28 @@ void merge(int array[], int const left, int const mid, int const right)
 
     // Copy the remaining elements of
     // left[], if there are any
-    while (indexOfSubArrayOne < subArrayOne) {
-        array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
-        indexOfSubArrayOne++;
-        indexOfMergedArray++;
-    }
+    std::move(indexOfSubArrayOne, std::end(leftArray), indexOfMergedArray);
     // Copy the remaining elements of
     // right[], if there are any
-    while (indexOfSubArrayTwo < subArrayTwo) {
-        array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
-        indexOfSubArrayTwo++;
-        indexOfMergedArray++;
-    }
+    std::move(indexOfSubArrayTwo, std::end(rightArray), indexOfMergedArray);
 }
 
 // begin is for left index and end is
 // right index of the sub-array
 // of arr to be sorted */
-void MergeSort(int array[], int const begin, int const end)
+template<typename I>
+void MergeSort(I begin, I end)
 {
-    if (begin >= end) {
+    if (std::distance(begin, end) < 2) {
         return; // Returns recursively
     }
 
-    auto mid = begin + (end - begin) / 2;
-    MergeSort(array, begin, mid);
-    MergeSort(array, mid + 1, end);
-    merge(array, begin, mid, end);
+    auto mid = begin + (std::distance(begin, end) / 2);
+    MergeSort(begin, mid);
+    MergeSort(mid, end);
+    merge(begin, mid, end);
 }
 
-void MergeSort(int* begin, int* end)
-{
-    MergeSort(begin, 0, end - begin - 1);
-}
 
 }
 

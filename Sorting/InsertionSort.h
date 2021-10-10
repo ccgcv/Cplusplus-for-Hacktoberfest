@@ -6,18 +6,20 @@
 namespace ccgcv::Hacktoberfest::Sort
 {
 
-void InsertionSort(int* a, int* aEnd)
+template<typename I>
+void InsertionSort(I begin, I end)
 {
-    int size = aEnd - a;
-    int e;
-    for(int i=0; i<size; i++) {
-        e = a[i];
-        int j= i-1;
-        while(j>=0 && a[j]>e) {
-            a[j+1] = a[j];
+    using ValueType = typename std::iterator_traits<I>::value_type;
+
+    ValueType e;
+    for (I loop = begin + 1; loop != end; ++loop) {
+        e = *loop;
+        I j= loop-1;
+        while(j != begin && *j > e) {
+            *(j+1) = *j;
             j--;
         }
-        a[j+1] = e;
+        *(j+1) = e;
     }
 }
 

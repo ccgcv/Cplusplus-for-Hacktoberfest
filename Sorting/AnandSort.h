@@ -9,24 +9,24 @@
 namespace ccgcv::Hacktoberfest::Sort
 {
 
-void AnandSort(int* B, int* Bend)
+template<typename I>
+void AnandSort(I begin, I end)
 {
     int i,j,A[100]={0};   // Initally each index is assigned with 0
-    int n = Bend - B;
 
-    for(i=0;i<n;i++) {
+    for(I loop = begin; loop != end; ++loop) {
         for(j=0;j<=100;j++) {
-            if(B[i]==j) {
+            if(*loop == j) {
                 ++A[j];
                 break;
             }
         }
     }
-    int dst = 0;
+    I loop = begin;
     for(i=0;i<100;i++) {
         while ( A[i]!=0 ) {      //It will print only that index element value which is not having 0 
-            B[dst] = i;
-            ++dst;
+            (*loop) = i;
+            ++loop;
             --A[i];
         }
     }

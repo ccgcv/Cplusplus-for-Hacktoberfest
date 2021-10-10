@@ -8,23 +8,28 @@ namespace ccgcv::Hacktoberfest::Sort
 {
 
 // Function sort the array using Cycle sort
-void CycleSort(int* arr, int* arrEnd)
+template<typename I>
+void CycleSort(I begin, I end)
 {
-    int n = arrEnd - arr;
+    using ValueType = typename std::iterator_traits<I>::value_type;
+
+    int n = end - begin;
+    I last = end - 1;
     // count number of memory writes
     int writes = 0;
 
     // traverse array elements and put it to on the right place
-    for (int cycleStart = 0; cycleStart <= n - 2; cycleStart++) {
+    for (I cycleStart = begin; cycleStart != last; ++cycleStart) {
+    //for (int cycleStart = 0; cycleStart <= n - 2; cycleStart++) {
 
         // initialize item as starting point
-        int item = arr[cycleStart];
+        ValueType item = *cycleStart;
 
         // Find position where we put the item. We basically
         // Count all smaller elements on right side of item.
-        int pos = cycleStart;
-        for (int i = cycleStart + 1; i < n; i++) {
-            if (arr[i] < item) {
+        I pos = cycleStart;
+        for (I i = cycleStart + 1; i != end; ++i) {
+            if (*i < item) {
                 pos++;
             }
         }
@@ -35,13 +40,13 @@ void CycleSort(int* arr, int* arrEnd)
         }
 
         // ignore all duplicate  elements since we they are "sorted"
-        while (item == arr[pos]) {
+        while (item == *pos) {
             pos += 1;
         }
 
         // move the item to it's right position
         if (pos != cycleStart) {
-            std::swap(item, arr[pos]);
+            std::swap(item, *pos);
             writes++;
         }
 
@@ -50,20 +55,20 @@ void CycleSort(int* arr, int* arrEnd)
             pos = cycleStart;
 
             // Find position where we put the element
-            for (int i = cycleStart + 1; i < n; i++) {
-                if (arr[i] < item) {
+            for (I i = cycleStart + 1; i != end; ++i) {
+                if (*i < item) {
                     pos += 1;
                 }
             }
 
             // Ignore all duplicate  elements
-            while (item == arr[pos]) {
+            while (item == *pos) {
                 pos += 1;
             }
 
             // Put the item to it's right position
-            if (item != arr[pos]) {
-                std::swap(item, arr[pos]);
+            if (item != *pos) {
+                std::swap(item, *pos);
                 writes++;
             }
         }

@@ -7,39 +7,46 @@ namespace ccgcv::Hacktoberfest::Sort
 {
 
 // Function to partition the array passing array, starting element and last element as parameters
-int partition(int a[],int start,int end)
+template<typename I>
+I partition(I begin, I end)
 {
-    int pivot = a[end]; // Selecting last element as pivot element
-    int index_p = start;
-    for(int i=start;i<end;i++) {
-        if(a[i]<pivot) {  // If a[i] is less than pivot element then swap the elements
-            int temp=a[index_p];
-            a[index_p]=a[i];
-            a[i]=temp;
-            index_p++ ;
+    using ValueType = typename std::iterator_traits<I>::value_type;
+
+    I         pivotPoint = end - 1;
+    ValueType pivot = *pivotPoint; // Selecting last element as pivot element
+    I index_p = begin;
+    for(I loop = begin; loop != pivotPoint; ++loop) {
+        if(*loop < pivot) {  // If a[i] is less than pivot element then swap the elements
+            ValueType temp=*index_p;
+            *index_p=*loop;
+            *loop=temp;
+            index_p++;
         }
     }
     // Put pivot element in the index_p
 
-    int temp = a[index_p];
-    a[index_p]=a[end];
-    a[end]=temp;
+    ValueType temp = *index_p;
+    *index_p=*pivotPoint;
+    *pivotPoint=temp;
     return index_p; // Return the index of pivot element
 }
 
 // Function to sort the array after partitioning using recursion
-void QuickSort(int a[], int start, int end)
+std::string indent;
+template<typename I>
+void QuickSort(I init, I begin, I end)
 {
-    if(start<end) {
-        int p;
-        p = partition(a,start, end);
-        QuickSort(a,start,p-1); // Sort all elements from start to pivot(excluding)
-        QuickSort(a,p+1,end); // Sort all elements after pivot to end
+    if (std::distance(begin, end) > 1) {
+        I p;
+        p = partition(begin, end);
+        QuickSort(init, begin ,p);    // Sort all elements from start to pivot(excluding)
+        QuickSort(init, p + 1, end);      // Sort all elements after pivot to end
     }
 }
-void QuickSort(int* a, int* aEnd)
+template<typename I>
+void QuickSort(I begin, I end)
 {
-    QuickSort(a, 0, aEnd - a - 1);
+    QuickSort(begin, begin, end);
 }
 }
 

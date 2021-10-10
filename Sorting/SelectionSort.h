@@ -7,16 +7,18 @@
 namespace ccgcv::Hacktoberfest::Sort
 {
 
-void SelectionSort(int* a, int* aEnd)
+template<typename I>
+void SelectionSort(I begin, I end)
 {
-    int size = aEnd - a;
-    int temp;
-    for(int i=0; i<size; i++) {
-        for(int j=i+1; j<size; j++) {
-            if(a[i] > a[j]) {
-                temp = a[i];
-                a[i] = a[j];
-                a[j] = temp;
+    using ValueType = typename std::iterator_traits<I>::value_type;
+
+    ValueType temp;
+    for(I loop = begin; loop != end; ++loop) {
+        for(I j= loop + 1; j != end; ++j) {
+            if(*loop > *j) {
+                temp = *loop;
+                *loop = *j;
+                *j = temp;
             }
         }
     }

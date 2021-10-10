@@ -9,27 +9,28 @@
 namespace ccgcv::Hacktoberfest::Sort
 {
 
-void CountingSort(int* arr, int* arrEnd)
+template<typename I>
+void CountingSort(I begin, I end)
 {
-    int n = arrEnd - arr;
-    int largest = arr[0];
-    for (int i = 0;i<n;i++) {
-        if (arr[i]>largest) {
-            largest = arr[i];
+    int n = end - begin;
+    int largest = *begin;
+    for (I loop = begin; loop != end; ++loop) {
+        if ((*loop) > largest) {
+            largest = *loop;
         }
     }
 
     std::vector<int> freq(largest+1,0);
-    for (int i=0;i<n;i++) {
-        freq[arr[i]]++;
+    for (I loop = begin; loop != end; ++loop) {
+        freq[*loop]++;
     }
 
-    int j = 0;
+    I loop = begin;
     for (int i=0;i<=largest;i++) {
         while(freq[i]>0) {
-            arr[j]=i;
+            *loop = i;
             freq[i]--;
-            j++;
+            ++loop;
         }
     }
 }
