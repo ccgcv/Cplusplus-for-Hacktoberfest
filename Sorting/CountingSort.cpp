@@ -3,8 +3,9 @@
 #include <vector>
 #include "util/inputoutput.h"
 
-void countingSort(int arr[], int n)
+void CountingSort(int* arr, int* arrEnd)
 {
+    int n = arrEnd - arr;
     int largest = arr[0];
     for (int i = 0;i<n;i++) {
         if (arr[i]>largest) {
@@ -27,15 +28,3 @@ void countingSort(int arr[], int n)
     }
 }
 
-int main(int argc, char* argv[])
-{
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> arr = getSortInput(argc, argv);
-    int size = arr.size();
-
-    countingSort(&arr[0], size);
-    displayResult(arr);
-    return 0;;
-}

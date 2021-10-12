@@ -3,15 +3,10 @@
 
 #include "util/inputoutput.h"
 
-int main(int argc, char* argv[])
+void AnandSort(int* B, int* Bend)
 {
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> B = getSortInput(argc, argv);
-    int n = B.size();
-
     int i,j,A[100]={0};   // Initally each index is assigned with 0
+    int n = Bend - B;
 
     for(i=0;i<n;i++) {
         for(j=0;j<=100;j++) {
@@ -29,6 +24,5 @@ int main(int argc, char* argv[])
             --A[i];
         }
     }
-    displayResult(B);
-    return 0;
 }
+

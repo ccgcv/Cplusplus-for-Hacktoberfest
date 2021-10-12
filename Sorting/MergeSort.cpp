@@ -58,29 +58,20 @@ void merge(int array[], int const left, int const mid, int const right)
 // begin is for left index and end is
 // right index of the sub-array
 // of arr to be sorted */
-void mergeSort(int array[], int const begin, int const end)
+void MergeSort(int array[], int const begin, int const end)
 {
     if (begin >= end) {
         return; // Returns recursively
     }
 
     auto mid = begin + (end - begin) / 2;
-    mergeSort(array, begin, mid);
-    mergeSort(array, mid + 1, end);
+    MergeSort(array, begin, mid);
+    MergeSort(array, mid + 1, end);
     merge(array, begin, mid, end);
 }
 
-// Driver code
-int main(int argc, char* argv[])
+void MergeSort(int* begin, int* end)
 {
-    using ccgcv::Hacktoberfest::Sort::Util::getSortInput;
-    using ccgcv::Hacktoberfest::Sort::Util::displayResult;
-
-    std::vector<int> arr = getSortInput(argc, argv);
-    int arr_size = arr.size();
-
-    mergeSort(&arr[0], 0, arr_size - 1);
-    displayResult(arr);
-
-    return 0;
+    MergeSort(begin, 0, end - begin - 1);
 }
+
