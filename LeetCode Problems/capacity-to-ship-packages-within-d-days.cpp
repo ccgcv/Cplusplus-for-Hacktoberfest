@@ -1,3 +1,6 @@
+Given an array arr[] consisting of N positive integers representing the weights of N items and a positive integer D, the task is to find the minimum weight capacity of a boat(say K) to ship all weights within D days such that the order of weights loaded on the ship is in the order of the array elements in arr[] and the total amount of weight loaded by ship each day is K.
+
+
 // Time:  O(nlogr)
 // Space: O(1)
 
