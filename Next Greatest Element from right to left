@@ -1,0 +1,53 @@
+// Next Greatest Element from right to left
+#include<bits/stdc++.h>
+using namespace std;
+
+int nge(int a[],int n){
+    stack<int> st; 
+    int nge[n]; 
+    for(int i=0; i<n; ++i){
+
+        while(!st.empty() && st.top() <=a[i])
+            st.pop();
+        
+
+        if(i < n){
+            if(st.empty() == false)
+                 nge[i] = st.top();
+               
+            else
+                nge[i]=-1; 
+              
+        }
+        st.push(a[i]);
+    }
+    for(int i=0; i<n; ++i){
+        cout << nge[i] << " ";
+    }
+    return 0;
+
+}
+
+int main(){
+   
+    int n;
+    cout << "Enter size";
+    cin >> n;
+    int a[n];
+    for(int i=0; i<n ;++i){
+        cin >> a[i];
+    }
+    nge(a,n);
+}
+
+/*
+******************* output *************
+Enter size 4
+1 5 4 3
+-1 -1 5 4 
+
+Enter size 6
+2 7 5 4 7 8
+-1 -1 7 5 -1 -1
+
+*/
