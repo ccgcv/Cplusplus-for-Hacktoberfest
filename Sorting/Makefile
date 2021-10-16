@@ -1,31 +1,33 @@
 
-SRC		= $(wildcard *.cpp)
-REG		= $(patsubst %.cpp, %.reg, $(SRC))
-RST		= $(patsubst %.cpp, %.rst, $(SRC))
+HEAD	= $(wildcard *.h)
+REG		= $(patsubst %.h, %.reg, $(HEAD))
+RST		= $(patsubst %.h, %.rst, $(HEAD))
+
+.INTERMEDIATE:		register
 
 
 all:	app
 
-app:	register $(SRC) util/inputoutput.cpp util/main.cpp
-	$(CXX) -o $@ -std=c++17 $(SRC) util/inputoutput.cpp util/main.cpp
+app:	register util/inputoutput.cpp util/main.cpp
+	$(CXX) -o $@ -std=c++17 util/inputoutput.cpp util/main.cpp
 
 clean:
 	$(RM) -rf $(APP) $(TST)
 
 test: app $(RST)
 
-.PHONY:		register register.rm register.add
+register:	util/sortfunctions.register
 
-register:	register.rm register.add
-
-register.rm:
-	rm -f util/sortfunctions.register
-
-register.add: $(REG)
+util/sortfunctions.register:	$(HEAD)
+	@echo "Registering Sort Functions"
+	@rm -f util/sortfunctions.register
+	@rm -f util/sortfunctions.allheaders.h
+	@make $(REG)
 
 %.reg:
-	echo "REGISTER_SORT_FUNCTION($*)" >> util/sortfunctions.register
-	
+	@echo "		Register: $*"
+	@echo 'REGISTER_SORT_FUNCTION($*)' >> util/sortfunctions.register
+	@echo '#include "../$*.h"'         >> util/sortfunctions.allheaders.h
 
 %.rst:	%.tst
 	@diffCount=`diff $< util/expected | wc -l`;		\
@@ -35,7 +37,7 @@ register.add: $(REG)
 		printf "Actual:   "; cat $<;				\
 	fi
 
-%.tst:	%.app
+%.tst:	app
 	./app --default --sort=$* > $@
 
 	

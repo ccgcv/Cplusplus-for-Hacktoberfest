@@ -3,16 +3,17 @@
 #include <map>
 #include <functional>
 
-
-#define REGISTER_SORT_FUNCTION(sortName)           void sortName(int*, int*);
-#include "sortfunctions.register"
+#include "sortfunctions.allheaders.h"
 
 
+#undef INCLUDE
+#undef QUOTE
+#undef HEADER
 #undef REGISTER_SORT_FUNCTION
-#define REGISTER_SORT_FUNCTION(sortName)           { #sortName, [](std::vector<int>& data){ sortName(&data[0], &data[data.size()]);}},
+#define REGISTER_SORT_FUNCTION(sortName)           { #sortName, [](std::vector<int>& data){ ccgcv::Hacktoberfest::Sort::sortName(&data[0], &data[data.size()]);}},
 std::map<std::string, std::function<void(std::vector<int>&)>>   sortFunctions = {
     #include "sortfunctions.register"
-    {"default", [](std::vector<int>& data){ QuickSort(&data[0], &data[data.size()]);}}
+    {"default", [](std::vector<int>& data){ ccgcv::Hacktoberfest::Sort::QuickSort(&data[0], &data[data.size()]);}}
 };
 
 std::string getSortFunction(int argc, char* argv[])

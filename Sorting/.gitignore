@@ -1,3 +1,4 @@
 app
 *.tst
 util/sortfunctions.register
+util/sortfunctions.allheaders.h

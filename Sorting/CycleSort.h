@@ -1,25 +1,36 @@
+#ifndef  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_CYCLESORT_H
+#define  CCGCV_CPLUSPLUS_FOR_HACKTOBERFEST_SORT_CYCLESORT_H
+
 #include <utility>
 #include "util/inputoutput.h"
 
-// Function sort the array using Cycle sort
-void CycleSort(int* arr, int* arrEnd)
+namespace ccgcv::Hacktoberfest::Sort
 {
-    int n = arrEnd - arr;
+
+// Function sort the array using Cycle sort
+template<typename I>
+void CycleSort(I begin, I end)
+{
+    using ValueType = typename std::iterator_traits<I>::value_type;
+    using std::swap;
+
+    I last = end - 1;
     // count number of memory writes
     int writes = 0;
 
     // traverse array elements and put it to on the right place
-    for (int cycleStart = 0; cycleStart <= n - 2; cycleStart++) {
+    for (I cycleStart = begin; cycleStart != last; ++cycleStart) {
+    //for (int cycleStart = 0; cycleStart <= n - 2; cycleStart++) {
 
         // initialize item as starting point
-        int item = arr[cycleStart];
+        ValueType item = std::move(*cycleStart);
 
         // Find position where we put the item. We basically
         // Count all smaller elements on right side of item.
-        int pos = cycleStart;
-        for (int i = cycleStart + 1; i < n; i++) {
-            if (arr[i] < item) {
-                pos++;
+        I pos = cycleStart;
+        for (I i = cycleStart + 1; i != end; ++i) {
+            if (*i < item) {
+                ++pos;
             }
         }
 
@@ -29,14 +40,14 @@ void CycleSort(int* arr, int* arrEnd)
         }
 
         // ignore all duplicate  elements since we they are "sorted"
-        while (item == arr[pos]) {
-            pos += 1;
+        while (item == *pos) {
+            ++pos;
         }
 
         // move the item to it's right position
         if (pos != cycleStart) {
-            std::swap(item, arr[pos]);
-            writes++;
+            swap(item, *pos);
+            ++writes;
         }
 
         // Rotate rest of the cycle
@@ -44,23 +55,27 @@ void CycleSort(int* arr, int* arrEnd)
             pos = cycleStart;
 
             // Find position where we put the element
-            for (int i = cycleStart + 1; i < n; i++) {
-                if (arr[i] < item) {
-                    pos += 1;
+            for (I i = cycleStart + 1; i != end; ++i) {
+                if (*i < item) {
+                    ++pos;
                 }
             }
 
             // Ignore all duplicate  elements
-            while (item == arr[pos]) {
-                pos += 1;
+            while (item == *pos) {
+                ++pos;
             }
 
             // Put the item to it's right position
-            if (item != arr[pos]) {
-                std::swap(item, arr[pos]);
-                writes++;
+            if (item != *pos) {
+                swap(item, *pos);
+                ++writes;
             }
         }
     }
 }
+
+}
+
+#endif
 
